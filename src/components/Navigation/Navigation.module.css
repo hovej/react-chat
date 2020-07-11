@@ -1,0 +1,12 @@
+.Navigation {
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  border: 1px solid blueviolet;
+  box-sizing: border-box;
+  list-style: none;
+  display: flex;
+  flex-flow: row-reverse;
+  background-color: blueviolet;
+  z-index: 100;
+}

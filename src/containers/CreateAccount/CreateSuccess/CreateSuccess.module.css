@@ -1,0 +1,20 @@
+.CreateSuccess {
+  margin: auto;
+  text-align: center;
+}
+
+.Link {
+  width: 150px;
+  height: 50px;
+  padding: 5px;
+  box-sizing: border-box;
+  font: inherit;
+  margin: 15px auto;
+  background-color: transparent;
+  border: 1px solid blueviolet;
+  cursor: pointer;
+  font-weight: bold;
+  color: blueviolet;
+  outline: none;
+  text-decoration: none;
+}

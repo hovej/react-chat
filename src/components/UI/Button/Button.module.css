@@ -1,0 +1,18 @@
+.Button {
+  width: 150px;
+  height: 50px;
+  font: inherit;
+  margin: 15px auto;
+  background-color: transparent;
+  border: 1px solid blueviolet;
+  cursor: pointer;
+  font-size: 120%;
+  font-weight: bold;
+  color: blueviolet;
+  outline: none;
+}
+
+.Button:disabled {
+  color: gray;
+  cursor: not-allowed;
+}

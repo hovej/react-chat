@@ -1,0 +1,7 @@
+.Chat {
+  width: 50%;
+  height: 100%;
+  margin-left: 25%;
+  border: 1px solid blueviolet;
+  box-sizing: border-box;
+}
