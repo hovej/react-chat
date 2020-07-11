@@ -14,11 +14,17 @@ class App extends React.Component {
   }
 
   updateDisplayName = (name) => {
-    console.log(this.state.authenticated);
-    this.setState({
-      displayName: name,
-      authenticated: true
-    });
+    if (this.state.authenticated) {
+      this.setState({
+        authenticated: false,
+        displayName: ''
+      })
+    } else {
+      this.setState({
+        displayName: name,
+        authenticated: true
+      });
+    }
   }
 
   render() {
@@ -31,10 +37,10 @@ class App extends React.Component {
       <BrowserRouter>
         <Layout>
           <Switch>
-            <Route path='/login' render={ () => <Login updateName={this.updateDisplayName} {...this.props} />} />
+            <Route path='/login' render={() => <Login updateName={this.updateDisplayName} {...this.props} />} />
             <Route path='/create' component={CreateAccount} />
             {redirect}
-            <Route path='/home' render={ () => <ChatServer user={this.state.displayName} />} />
+            <Route path='/home' render={() => <ChatServer user={this.state.displayName} />} />
             <Redirect from='/' exact to='/login'></Redirect>
             <Route path='/' component={NotFound} />
           </Switch>
