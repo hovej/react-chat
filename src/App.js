@@ -17,7 +17,7 @@ class App extends React.Component {
     console.log(this.state.authenticated);
     this.setState({
       displayName: name,
-      authenticated: true
+      authenticated: false
     });
   }
 
