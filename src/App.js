@@ -9,15 +9,15 @@ import Login from './containers/Login/Login';
 
 class App extends React.Component {
   state = {
-    authenticated: true,
-    displayName: 'Justin'
+    authenticated: false,
+    displayName: ''
   }
 
   updateDisplayName = (name) => {
     console.log(this.state.authenticated);
     this.setState({
       displayName: name,
-      authenticated: false
+      authenticated: true
     });
   }
 
