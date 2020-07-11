@@ -70,6 +70,7 @@ class ChatServer extends React.Component {
       messages={this.state.messages}
       send={this.sendMessageHandler}
       changed={this.messageChangeHandler}
+      update={this.updateMessageHistory}
       value={this.state.messageText}
     />
     if (!this.state.messages) {
