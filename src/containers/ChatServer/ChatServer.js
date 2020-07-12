@@ -2,7 +2,9 @@ import React from 'react';
 
 import axios from '../../axios-messages';
 import Chat from '../../components/Chat/Chat';
-import Members from '../../components/Members/Members';
+import Members from '../Members/Members';
+import Feedback from '../Feedback/Feedback';
+import classes from './ChatServer.module.css';
 
 class ChatServer extends React.Component {
   state = {
@@ -77,7 +79,8 @@ class ChatServer extends React.Component {
       chat = null;
     }
     return (
-      <div style={{ height: '75vh', display: 'flex' }}>
+      <div className={classes.Server}>
+        <Feedback />
         {chat}
         <Members />
       </div>

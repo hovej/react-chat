@@ -1,0 +1,30 @@
+.Input {
+  resize: none;
+  width: 100%;
+  height: 90%;
+  font-size: 110%;
+  margin: 0;
+}
+
+.Form {
+  width: 25%;
+  height: 75vh;
+  margin: 0;
+  border: 1px solid blueviolet;
+  box-sizing: border-box;
+}
+
+.Button {
+  width: 100%;
+  height: 10%;
+  margin-top: -7px;
+  font: inherit;
+  box-sizing: border-box;
+  border: 1px solid blueviolet;
+}
+
+.Button:hover {
+  background-color: blueviolet;
+  color: white;
+  cursor: pointer;
+}
