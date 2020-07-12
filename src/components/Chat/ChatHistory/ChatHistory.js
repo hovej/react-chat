@@ -20,7 +20,7 @@ class ChatHistory extends PureComponent {
     let messages = [];
     const keys = Object.keys(this.props.messages);
     if (keys.length >= 20) {
-      for (let i = keys.length - 1; i >= keys.length-20; i--) {
+      for (let i = keys.length - 1; i >= keys.length-50; i--) {
         messages.push(this.props.messages[keys[i]]);
       }
     } else {
