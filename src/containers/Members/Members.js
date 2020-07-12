@@ -2,7 +2,7 @@ import React from 'react';
 import axios from '../../axios-messages';
 
 import classes from './Members.module.css';
-import Member from './Member/Member';
+import Member from '../../components/Member/Member';
 
 class Members extends React.PureComponent {
   state = {
