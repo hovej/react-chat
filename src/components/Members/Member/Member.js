@@ -1,8 +1,9 @@
 import React from 'react';
 
 const member = props => {
+  console.log('[Member] rendering...')
   return (
-    <div>Member</div>
+    <p>{props.name}</p>
   )
 }
 

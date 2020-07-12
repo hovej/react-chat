@@ -52,21 +52,14 @@ class Login extends React.Component {
             displayName: response.data[account].displayName
           });
         }
-        console.log(users);
         for (let i = 0; i < users.length; i++) {
-          console.log(users[i].username);
-          console.log(this.state.loginForm.username.value);
-          console.log(users[i].password);
-          console.log(this.state.loginForm.password.value);
           if (users[i].username === this.state.loginForm.username.value && users[i].password === this.state.loginForm.password.value) {
             validInfo = true;
-            console.log('worked');
             this.props.updateName(users[i].displayName);
             this.props.history.push('/home');
           }
         }
         if (!validInfo) {
-          console.log('didnt work');
           this.setState({
             validForm: false
           });
