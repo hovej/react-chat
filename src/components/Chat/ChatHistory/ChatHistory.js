@@ -34,7 +34,6 @@ class ChatHistory extends PureComponent {
     console.log('[ChatHistory] rendering...');
     return (
       <div className={classes.History}>
-        <button onClick={this.props.update}>REFRESH MESSAGES</button>
         {newMessages}
       </div>
     )
