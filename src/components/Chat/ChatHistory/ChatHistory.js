@@ -9,7 +9,7 @@ class ChatHistory extends PureComponent {
     this.timer = setInterval(() => {
       console.log('updating...');
       this.props.update()
-    }, 500)
+    }, 1000)
   }
 
   componentWillUnmount() {

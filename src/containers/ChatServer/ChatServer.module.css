@@ -2,4 +2,7 @@
   height: 75vh;
   width: 100vw;
   display: flex;
+  margin-top: 10px;
+  border: 2px solid blueviolet;
+  box-sizing: border-box;
 }

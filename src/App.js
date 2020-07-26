@@ -7,6 +7,7 @@ import NotFound from './components/UI/NotFound/NotFound';
 import CreateAccount from './containers/CreateAccount/CreateAccount';
 import Login from './containers/Login/Login';
 import Settings from './containers/Settings/Settings';
+import News from './containers/News/News';
 
 class App extends React.Component {
   state = {
@@ -43,6 +44,7 @@ class App extends React.Component {
             {redirect}
             <Route path='/home' render={() => <ChatServer user={this.state.displayName} />} />
             <Route path='/settings' component={Settings} />
+            <Route path='/news' component={News} />
             <Redirect from='/' exact to='/login'></Redirect>
             <Route path='/' component={NotFound} />
           </Switch>

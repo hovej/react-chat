@@ -22,6 +22,7 @@ const input = props => {
     default:
       break;
   }
+  console.log('input rendering');
 
   return (
     <div className={classes.Box}>

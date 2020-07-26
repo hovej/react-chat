@@ -20,4 +20,5 @@
 .Button:hover {
   cursor: pointer;
   background-color: blueviolet;
+  color: white;
 }

@@ -8,6 +8,7 @@ const navigation = props => {
     <ul className={classes.Navigation}>
       <NavigationItem location={'/login'}>Logout</NavigationItem>
       <NavigationItem location={'/settings'}>Settings</NavigationItem>
+      <NavigationItem location={'/news'}>News</NavigationItem>
       <NavigationItem location={'/home'}>Chat</NavigationItem>
     </ul>
   )

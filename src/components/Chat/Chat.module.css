@@ -2,5 +2,7 @@
   width: 50%;
   height: 100%;
   border: 1px solid blueviolet;
+  border-top: none;
+  border-bottom: none;
   box-sizing: border-box;
 }

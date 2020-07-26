@@ -52,24 +52,9 @@ class CreateAccount extends React.Component {
         touched: false,
         value: '',
         tooltip: 'Password must be between 6-20 characters'
-      },
-      key: {
-        name: 'Key',
-        elementType: 'input',
-        inputType: 'text',
-        validation: {
-          isRequired: true,
-          minLength: 1,
-          maxLength: 15
-        },
-        valid: false,
-        touched: false,
-        value: '',
-        tooltip: 'The unique key that was given to you to test'
       }
     },
     validInfo: false,
-    keys: [],
     usernames: [],
     submitted: false
   }
@@ -78,28 +63,15 @@ class CreateAccount extends React.Component {
     console.log(this.props);
     const keys = [];
     const usernames = [];
-    axios.request('/keys.json')
+
+    axios.request('/accounts.json')
       .then(res => {
         console.log(res);
-        for (let key in res.data) {
-          keys.push({
-            name: key,
-            key: res.data[key]
-          })
+        for (let account in res.data) {
+          usernames.push(res.data[account].username)
         }
-        console.log(keys);
-        axios.request('/accounts.json')
-          .then(res => {
-            console.log(res);
-            for (let account in res.data) {
-              usernames.push(res.data[account].username)
-            }
-            console.log(usernames);
-            this.setState({ keys: keys, usernames: usernames, submitted: false });
-          })
-      })
-      .catch(error => {
-        console.log(error);
+        console.log(usernames);
+        this.setState({ keys: keys, usernames: usernames, submitted: false });
       })
   }
 
@@ -141,20 +113,14 @@ class CreateAccount extends React.Component {
   }
 
   createNewAccount = (e) => {
+    console.log('1');
     e.preventDefault();
     const account = {
       username: this.state.createAccountForm.username.value,
       displayName: this.state.createAccountForm.displayName.value,
       password: this.state.createAccountForm.password.value
     }
-    let shouldPost = false;
-    let usedKey;
-    for (let i = 0; i < this.state.keys.length; i++) {
-      if (this.state.createAccountForm.key.value === this.state.keys[i].key) {
-        shouldPost = true;
-        usedKey = this.state.keys[i].name;
-      }
-    }
+    let shouldPost = true;
     for (let i = 0; i < this.state.usernames.length; i++) {
       if (account.username === this.state.usernames[i]) {
         shouldPost = false;
@@ -166,28 +132,16 @@ class CreateAccount extends React.Component {
         this.setState({ createAccountForm: form });
       }
     }
+    console.log(shouldPost);
     if (shouldPost) {
       axios.post('/accounts.json', account)
         .then(res => {
+          console.log(res);
           this.setState({ submitted: true });
-          axios.delete('/keys/' + usedKey + '.json')
-            .then(res => {
-              console.log(res);
-            })
-            .catch(error => {
-              console.log(error);
-            })
         })
         .catch(error => {
           console.log(error)
         })
-    } else {
-      const form = { ...this.state.createAccountForm };
-      const key = { ...form.key };
-      key.value = 'Please enter a valid key.';
-      key.valid = false;
-      form.key = key;
-      this.setState({ createAccountForm: form });
     }
   };
 
@@ -216,7 +170,6 @@ class CreateAccount extends React.Component {
     })
     let showModal = null
     if (this.state.submitted) {
-      console.log(this.state.keys);
       showModal = <Modal {...this.props}><CreateSuccess /></Modal>
     }
     return (

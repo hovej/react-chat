@@ -14,10 +14,9 @@ class Members extends React.PureComponent {
     axios.request('/accounts.json')
       .then(res => {
         for (let account in res.data) {
-          console.log(account)
           memberList.push({
             name: res.data[account].displayName,
-            key: res.data[account].name
+            username: res.data[account].username
           });
         }
         this.setState({ members: memberList })
@@ -32,7 +31,7 @@ class Members extends React.PureComponent {
     if (this.state.members.length > 0) {
       list = this.state.members.map(member => {
         return (
-          <Member key={member.key} name={member.name} />
+          <Member key={member.username} name={member.name} user={member.username} />
         )
       })
     }

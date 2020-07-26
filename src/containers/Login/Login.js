@@ -18,7 +18,7 @@ class Login extends React.Component {
       password: {
         name: 'Password',
         elementType: 'input',
-        inputType: 'text',
+        inputType: 'password',
         value: ''
       }
     },
@@ -55,7 +55,7 @@ class Login extends React.Component {
         for (let i = 0; i < users.length; i++) {
           if (users[i].username === this.state.loginForm.username.value && users[i].password === this.state.loginForm.password.value) {
             validInfo = true;
-            this.props.updateName(users[i].displayName);
+            this.props.updateName(users[i].displayName, users[i].username);
             this.props.history.push('/home');
           }
         }
@@ -95,7 +95,8 @@ class Login extends React.Component {
           changed={(e) => this.onChangeHandler(e, el.name)}
         />
       )
-    })
+    }
+    )
 
     return (
       <div className={classes.Page}>
