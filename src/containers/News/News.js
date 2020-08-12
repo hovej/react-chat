@@ -12,6 +12,12 @@ class News extends React.Component {
           'Usernames are now shown under display names in the member list.',
           'Some styling changes made to the chat screen.'
         ]
+      },
+      {
+        date: '8/2',
+        updates: [
+          
+        ]
       }
     ]
   }

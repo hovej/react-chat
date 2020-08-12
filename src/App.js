@@ -12,18 +12,18 @@ import News from './containers/News/News';
 class App extends React.Component {
   state = {
     authenticated: false,
-    displayName: ''
+    account: ''
   }
 
-  updateDisplayName = (name) => {
+  updateDisplayName = (account) => {
     if (this.state.authenticated) {
       this.setState({
         authenticated: false,
-        displayName: ''
+        account: ''
       })
     } else {
       this.setState({
-        displayName: name,
+        account: account,
         authenticated: true
       });
     }
@@ -42,7 +42,7 @@ class App extends React.Component {
             <Route path='/login' render={() => <Login updateName={this.updateDisplayName} {...this.props} />} />
             <Route path='/create' component={CreateAccount} />
             {redirect}
-            <Route path='/home' render={() => <ChatServer user={this.state.displayName} />} />
+            <Route path='/home' render={() => <ChatServer account={this.state.account} />} />
             <Route path='/settings' component={Settings} />
             <Route path='/news' component={News} />
             <Redirect from='/' exact to='/login'></Redirect>

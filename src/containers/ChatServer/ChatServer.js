@@ -17,7 +17,7 @@ class ChatServer extends React.Component {
     axios.get('/messages.json')
       .then(response => {
         console.log(response.data);
-        this.setState({ messages: response.data, user: this.props.user })
+        this.setState({ messages: response.data, user: this.props.account.displayName })
       })
       .catch(error => {
         console.log(error);
@@ -45,24 +45,26 @@ class ChatServer extends React.Component {
       text: this.state.messageText,
       user: this.state.user
     }
-    if (this.state.messages.hasOwnProperty('initial')) {
-      axios.delete('/messages/initial.json')
+    if (message.text.trim().length > 0) {
+      if (this.state.messages.hasOwnProperty('initial')) {
+        axios.delete('/messages/initial.json')
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+      }
+      axios.post('/messages.json', message)
       .then(response => {
         console.log(response);
+        this.setState({messageText: ''});
+        this.updateMessageHistory();
       })
       .catch(error => {
         console.log(error);
-      })
+      });
     }
-    axios.post('/messages.json', message)
-    .then(response => {
-      console.log(response);
-      this.setState({messageText: ''});
-      this.updateMessageHistory();
-    })
-    .catch(error => {
-      console.log(error);
-    });
     e.preventDefault();
   }
 
