@@ -9,4 +9,10 @@
   flex-flow: row-reverse;
   background-color: blueviolet;
   z-index: 100;
+  align-items: center;
+}
+
+.Title {
+  margin-right: 480px;
+  color: white;
 }

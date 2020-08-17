@@ -170,7 +170,7 @@ class CreateAccount extends React.Component {
     })
     let showModal = null
     if (this.state.submitted) {
-      showModal = <Modal {...this.props}><CreateSuccess /></Modal>
+      showModal = <Modal type='create account' {...this.props}><CreateSuccess /></Modal>
     }
     return (
       <div className={classes.Page}>

@@ -10,6 +10,7 @@ const navigation = props => {
       <NavigationItem location={'/settings'}>Settings</NavigationItem>
       <NavigationItem location={'/news'}>News</NavigationItem>
       <NavigationItem location={'/home'}>Chat</NavigationItem>
+      <h3 className={classes.Title}>REACT CHAT</h3>
     </ul>
   )
 }

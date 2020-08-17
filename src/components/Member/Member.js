@@ -1,12 +1,14 @@
 import React from 'react';
 
+import ProfilePicture from '../ProfilePicture/ProfilePicture';
+
 const member = props => {
   console.log('[Member] rendering...')
   return (
-    <div>
-      <h4 style={{marginBottom: '0'}}>{props.name}</h4>
-      <p style={{marginTop: '0'}}>{props.user}</p>
-    </div>
+      <div style={{display: 'flex', padding: '5px'}}>
+        <ProfilePicture size={30} />
+        <h4 style={{margin: '10px'}}>{props.name}</h4>
+      </div>
   )
 }
 

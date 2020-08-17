@@ -1,0 +1,11 @@
+.Setting {
+  display: flex;
+  margin: auto;
+  width: 35%;
+  align-items: center;
+  justify-content: center;
+}
+
+.Title {
+  margin: 0 8px;
+}

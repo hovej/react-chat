@@ -12,7 +12,18 @@
   outline: none;
 }
 
-.Button:disabled {
+.Button:disabled .Setting:disabled {
   color: gray;
   cursor: not-allowed;
+}
+
+.Setting {
+  width: 100px;
+  height: 35px;
+  font: inherit;
+  background-color: blueviolet;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
 }

@@ -5,16 +5,16 @@ import Message from '../../Message/Message';
 
 class ChatHistory extends PureComponent {
 
-  // componentDidMount() {
-  //   this.timer = setInterval(() => {
-  //     console.log('updating...');
-  //     this.props.update()
-  //   }, 1000)
-  // }
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      console.log('updating...');
+      this.props.update()
+    }, 1000)
+  }
 
-  // componentWillUnmount() {
-  //   clearInterval(this.timer);
-  // }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
 
   render() {
     let messages = [];
