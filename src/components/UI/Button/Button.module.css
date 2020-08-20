@@ -18,9 +18,10 @@
 }
 
 .Setting {
-  width: 100px;
-  height: 35px;
+  width: 80px;
+  height: 28px;
   font: inherit;
+  font-size: 80%;
   background-color: blueviolet;
   color: white;
   cursor: pointer;

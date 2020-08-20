@@ -5,16 +5,16 @@ import Message from '../../Message/Message';
 
 class ChatHistory extends PureComponent {
 
-  componentDidMount() {
-    this.timer = setInterval(() => {
-      console.log('updating...');
-      this.props.update()
-    }, 1000)
-  }
+  // componentDidMount() {
+  //   this.timer = setInterval(() => {
+  //     console.log('updating...');
+  //     this.props.update()
+  //   }, 1000)
+  // }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.timer);
+  // }
 
   render() {
     let messages = [];
@@ -29,7 +29,12 @@ class ChatHistory extends PureComponent {
       }
     }
     const newMessages = messages.map((message, i) => {
-      return <Message key={i} user={message.user} text={message.text} />
+      for (let account in this.props.accounts) {
+        if (this.props.accounts[account].username === message.user) {
+          return <Message key={i} name={message.name} text={message.text} picture={this.props.accounts[account].profilePicture} />
+        }
+      }
+      return null;
     });
     console.log('[ChatHistory] rendering...');
     return (

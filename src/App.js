@@ -22,6 +22,7 @@ class App extends React.Component {
         account: ''
       })
     } else {
+      console.log(account);
       this.setState({
         account: account,
         authenticated: true
@@ -43,7 +44,7 @@ class App extends React.Component {
             <Route path='/create' component={CreateAccount} />
             {redirect}
             <Route path='/home' render={() => <ChatServer account={this.state.account} />} />
-            <Route path='/settings' component={Settings} />
+            <Route path='/settings' render={() => <Settings account={this.state.account} />} />
             <Route path='/news' component={News} />
             <Redirect from='/' exact to='/login'></Redirect>
             <Route path='/' component={NotFound} />

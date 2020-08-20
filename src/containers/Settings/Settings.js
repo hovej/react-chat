@@ -1,6 +1,9 @@
 import React from 'react';
+import axios from '../../axios-messages';
 
 import SettingSection from '../../components/SettingSection/SettingSection';
+import Modal from '../../components/UI/Modal/Modal';
+import SettingsModalInfo from '../../components/UI/Modal/SettingsModalInfo/SettingsModalInfo';
 
 class Settings extends React.Component {
   state = {
@@ -10,28 +13,78 @@ class Settings extends React.Component {
         settings: [
           {
             name: 'Profile Picture',
-            description: 'Change your profile picture here.'
+            description: 'Change your profile picture here.',
+            settingType: 'picture'
+          },
+          {
+            name: 'Display Name',
+            description: 'Change your display here.',
+            settingType: 'displayName'
           }
         ]
       }
-    ]
+    ],
+    accountInfo: {...this.props.account},
+    showModal: false,
+    currentSetting: ''
+  }
+
+  saveSetting = (setting, value) => {
+    axios.get('/accounts.json')
+      .then(response => {
+        for (let account in response.data) {
+          if (response.data[account].username === this.props.account.username) {
+            let updatedAccount = {...response.data[account]};
+            updatedAccount[setting] = value;
+            axios.delete(`accounts/${account}.json`)
+              .then(response => {
+                axios.post('/accounts.json', updatedAccount)
+                  .then(response => {
+                    this.toggleModal('');
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  })
+              })
+              .catch(err => {
+                console.log(err);
+              })
+          }
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  toggleModal = (setting) => {
+    this.setState(state => ({
+      showModal: !state.showModal,
+      currentSetting: setting
+    }))
   }
 
   render() {
-    // let settings = [];
-    // for (let i = 0; i < this.state.sections.length; i++) {
-    //   settings.push(<SettingSection
-    //     key={this.state.sections[i].name}
-    //     title={this.state.sections[i].name + ' Settings'}
-    //     settings={[...this.state.sections[i].settings]}
-    //   />);
-    // }
+    let settings = [];
+    for (let i = 0; i < this.state.sections.length; i++) {
+      settings.push(<SettingSection
+        key={this.state.sections[i].name}
+        title={this.state.sections[i].name + ' Settings'}
+        settings={[...this.state.sections[i].settings]}
+        click={this.toggleModal}
+      />);
+    }
+
+    let modal = null;
+    if (this.state.showModal) {
+      modal = <Modal click={this.toggleModal}><SettingsModalInfo click={this.saveSetting} type={this.state.currentSetting} /></Modal>;
+    }
 
     return (
-      <div style={{textAlign: 'center'}}>
+      <div style={{ textAlign: 'center' }}>
+        {modal}
         <h1>Settings Page</h1>
-        <p>Settings content coming soon!</p>
-       {/* /* {settings} */}
+        {settings}
       </div>
     )
   }

@@ -10,10 +10,8 @@ class Modal extends React.Component {
       case 'version':
         message = 'There has been a recent update! Please be sure to take a look at the \'News\' page to see what\'s changed!';
         break;
-      case 'create account':
-        message = this.props.children;
-        break;
       default:
+        message = this.props.children;
         break;
     }
 

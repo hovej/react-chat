@@ -6,8 +6,14 @@ import classes from './SettingSection.module.css';
 const SettingSection = props => {
   let settings = [];
   console.log(props);
-  for (let i=0; i<props.settings.length; i++) {
-    settings.push(<Setting key={props.settings[i].name} name={props.settings[i].name} description={props.settings[i].description} />)
+  for (let i = 0; i < props.settings.length; i++) {
+    settings.push(<Setting
+      key={props.settings[i].name}
+      name={props.settings[i].name}
+      description={props.settings[i].description}
+      click={props.click}
+      settingType={props.settings[i].settingType}
+    />)
   }
 
   return (

@@ -13,6 +13,9 @@
 }
 
 .Title {
-  margin-right: 480px;
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  align-self: center;
   color: white;
 }

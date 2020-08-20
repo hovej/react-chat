@@ -16,7 +16,8 @@ class Members extends React.PureComponent {
         for (let account in res.data) {
           memberList.push({
             name: res.data[account].displayName,
-            username: res.data[account].username
+            username: res.data[account].username,
+            picture: res.data[account].profilePicture
           });
         }
         this.setState({ members: memberList })
@@ -31,7 +32,7 @@ class Members extends React.PureComponent {
     if (this.state.members.length > 0) {
       list = this.state.members.map(member => {
         return (
-          <Member key={member.username} name={member.name} user={member.username} />
+          <Member key={member.username} name={member.name} user={member.username} picture={member.picture} />
         )
       })
     }

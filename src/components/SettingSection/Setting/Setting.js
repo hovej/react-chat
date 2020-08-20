@@ -7,7 +7,7 @@ const Setting = props => {
   return (
     <div className={classes.Setting}>
       <h4 className={classes.Title}>{props.name}</h4>
-      <Button onClick={props.clicked} type={'setting'}>CHANGE</Button>
+      <Button clicked={() => props.click(props.settingType)} type={'setting'}>CHANGE</Button>
     </div>
   )
 }
