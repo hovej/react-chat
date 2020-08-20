@@ -24,18 +24,27 @@ class Settings extends React.Component {
         ]
       }
     ],
-    accountInfo: {...this.props.account},
     showModal: false,
-    currentSetting: ''
+    currentSetting: '',
+    selectedImage: this.props.account.profilePicture
   }
 
-  saveSetting = (setting, value) => {
+  componentDidMount() {
+    console.log(this.props.account);
+  }
+
+  selectImage = (image) => {
+    this.setState({ selectedImage: image });
+  }
+
+  saveSetting = (setting) => {
     axios.get('/accounts.json')
       .then(response => {
         for (let account in response.data) {
           if (response.data[account].username === this.props.account.username) {
-            let updatedAccount = {...response.data[account]};
-            updatedAccount[setting] = value;
+            let updatedAccount = { ...response.data[account] };
+            updatedAccount[setting] = this.state.selectedImage;
+            console.log(updatedAccount);
             axios.delete(`accounts/${account}.json`)
               .then(response => {
                 axios.post('/accounts.json', updatedAccount)
@@ -77,7 +86,14 @@ class Settings extends React.Component {
 
     let modal = null;
     if (this.state.showModal) {
-      modal = <Modal click={this.toggleModal}><SettingsModalInfo click={this.saveSetting} type={this.state.currentSetting} /></Modal>;
+      modal = <Modal click={this.toggleModal}>
+        <SettingsModalInfo
+          select={this.selectImage}
+          current={this.state.selectedImage}
+          save={this.saveSetting}
+          type={this.state.currentSetting}
+        />
+      </Modal>;
     }
 
     return (

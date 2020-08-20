@@ -118,7 +118,8 @@ class CreateAccount extends React.Component {
     const account = {
       username: this.state.createAccountForm.username.value,
       displayName: this.state.createAccountForm.displayName.value,
-      password: this.state.createAccountForm.password.value
+      password: this.state.createAccountForm.password.value,
+      profilePicture: 'bear'
     }
     let shouldPost = true;
     for (let i = 0; i < this.state.usernames.length; i++) {
