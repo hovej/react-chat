@@ -46,10 +46,7 @@ class Login extends React.Component {
       .then(response => {
         for (let account in response.data) {
           users.push({
-            name: account,
-            username: response.data[account].username,
-            password: response.data[account].password,
-            displayName: response.data[account].displayName
+            ...response.data[account]
           });
         }
         for (let i = 0; i < users.length; i++) {

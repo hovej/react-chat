@@ -1,11 +1,11 @@
 .Setting {
   display: flex;
-  margin: auto;
-  width: 35%;
+  width: 200px;
+  margin: 15px auto;
   align-items: center;
   justify-content: center;
 }
 
 .Title {
-  margin: 0 8px;
+  margin: 0 auto;
 }

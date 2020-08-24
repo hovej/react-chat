@@ -13,8 +13,9 @@ class ChatServer extends React.Component {
     user: 'anon123',
     name: 'Anonymous',
     messageText: '',
-    currentVersion: '8162020',
-    newVersion: false
+    currentVersion: '8232020',
+    newVersion: false,
+    allAccounts: {}
   }
 
   componentDidMount() {
@@ -24,6 +25,7 @@ class ChatServer extends React.Component {
         this.setState({ messages: response.data, user: this.props.account.username, name: this.props.account.displayName })
         axios.get('/accounts.json')
           .then(response => {
+            this.setState({allAccounts: {...response.data}});
             for (let account in response.data) {
               console.log('check 0');
               if (response.data[account].username === this.state.user) {
@@ -80,7 +82,8 @@ class ChatServer extends React.Component {
   sendMessageHandler = (e) => {
     const message = {
       text: this.state.messageText,
-      user: this.state.name
+      user: this.state.user,
+      name: this.state.name
     }
     if (message.text.trim().length > 0) {
       if (this.state.messages.hasOwnProperty('initial')) {
@@ -118,6 +121,8 @@ class ChatServer extends React.Component {
       changed={this.messageChangeHandler}
       update={this.updateMessageHistory}
       value={this.state.messageText}
+      accounts={this.state.allAccounts}
+      darkMode={this.props.darkMode}
     />
     if (!this.state.messages) {
       chat = null;
@@ -126,9 +131,9 @@ class ChatServer extends React.Component {
     return (
       <div className={classes.Server}>
         {modal}
-        <Feedback />
+        <Feedback darkMode={this.props.darkMode} />
         {chat}
-        <Members />
+        <Members darkMode={this.props.darkMode} />
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from '../../axios-messages';
 
 import classes from './Feedback.module.css';
+import darkClasses from '../../Darkmode.module.css';
 
 class Feedback extends React.PureComponent {
   state = {
@@ -29,15 +30,21 @@ class Feedback extends React.PureComponent {
   }
 
   render() {
+    const inputClasses = [classes.Input];
+    const buttonClasses = [classes.Button];
+    if (this.props.darkMode) {
+      inputClasses.push(darkClasses.Input);
+      buttonClasses.push(classes.DarkButton);
+    }
     return (
       <form className={classes.Form} onSubmit={this.onSubmitHandler}>
         <textarea
-          className={classes.Input}
+          className={inputClasses.join(' ')}
           onChange={this.onChangeHandler}
           placeholder='Please enter your feedback here!'
           value={this.state.text}
         />
-        <button className={classes.Button}>Submit</button>
+        <button className={buttonClasses.join(' ')}>Submit</button>
       </form>
     )
   }

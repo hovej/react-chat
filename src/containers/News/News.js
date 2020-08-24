@@ -5,6 +5,13 @@ class News extends React.Component {
   state = {
     items: [
       {
+        date: '8/23',
+        updates: [
+          'Profile pictures can now be changed! You have 8 different pictures to choose from at the moment.',
+          'A dark mode has been added! In the settings page, you can now toggle a dark mode.'
+        ]
+      },
+      {
         date: '8/16',
         updates: [
           'Profile pictures are in the process of being implemented. Currently, everyone has been given the default picture and the ability to change it is not yet available.',
@@ -40,16 +47,18 @@ class News extends React.Component {
   render() {
     let itemList = [];
     for (let i = 0; i < this.state.items.length; i++) {
-      itemList.push(<h3 style={{marginTop: '30px', marginBottom: '0'}} key={this.state.items[i].date}>{this.state.items[i].date} Update</h3>);
+      itemList.push(<h3 style={{ marginTop: '30px', marginBottom: '0' }} key={this.state.items[i].date}>{this.state.items[i].date} Update</h3>);
       for (let j = 0; j < this.state.items[i].updates.length; j++) {
         itemList.push(<NewsItem key={this.state.items[i].date + j} content={this.state.items[i].updates[j]} />);
       }
     }
 
     return (
-      <div style={{ margin: 'auto', width: '400px' }}>
-        <h1 style={{ textAlign: 'center' }}>NEWS</h1>
-        {itemList}
+      <div style={this.props.darkMode ? {backgroundColor: 'black'} : {}}>
+        <div style={{ margin: 'auto', width: '400px' }}>
+          <h1 style={{ textAlign: 'center' }}>NEWS</h1>
+          {itemList}
+        </div>
       </div>
     )
   }

@@ -3,6 +3,7 @@ import axios from '../../axios-messages';
 import { Link } from 'react-router-dom';
 
 import classes from './CreateAccount.module.css';
+
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
@@ -118,7 +119,8 @@ class CreateAccount extends React.Component {
     const account = {
       username: this.state.createAccountForm.username.value,
       displayName: this.state.createAccountForm.displayName.value,
-      password: this.state.createAccountForm.password.value
+      password: this.state.createAccountForm.password.value,
+      profilePicture: 'bear'
     }
     let shouldPost = true;
     for (let i = 0; i < this.state.usernames.length; i++) {
