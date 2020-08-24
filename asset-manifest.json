@@ -1,23 +1,30 @@
 {
   "files": {
-    "main.css": "/react-chat/static/css/main.3efc9828.chunk.css",
-    "main.js": "/react-chat/static/js/main.2611deb3.chunk.js",
-    "main.js.map": "/react-chat/static/js/main.2611deb3.chunk.js.map",
+    "main.css": "/react-chat/static/css/main.77e623ba.chunk.css",
+    "main.js": "/react-chat/static/js/main.0958303b.chunk.js",
+    "main.js.map": "/react-chat/static/js/main.0958303b.chunk.js.map",
     "runtime-main.js": "/react-chat/static/js/runtime-main.6fc5081d.js",
     "runtime-main.js.map": "/react-chat/static/js/runtime-main.6fc5081d.js.map",
-    "static/js/2.e48d96d3.chunk.js": "/react-chat/static/js/2.e48d96d3.chunk.js",
-    "static/js/2.e48d96d3.chunk.js.map": "/react-chat/static/js/2.e48d96d3.chunk.js.map",
+    "static/js/2.69ee5a2a.chunk.js": "/react-chat/static/js/2.69ee5a2a.chunk.js",
+    "static/js/2.69ee5a2a.chunk.js.map": "/react-chat/static/js/2.69ee5a2a.chunk.js.map",
     "index.html": "/react-chat/index.html",
-    "precache-manifest.fc594c181665eb747940bf79b3d9ab98.js": "/react-chat/precache-manifest.fc594c181665eb747940bf79b3d9ab98.js",
+    "precache-manifest.db88a84c69fe9f38338ff498a52a3d16.js": "/react-chat/precache-manifest.db88a84c69fe9f38338ff498a52a3d16.js",
     "service-worker.js": "/react-chat/service-worker.js",
-    "static/css/main.3efc9828.chunk.css.map": "/react-chat/static/css/main.3efc9828.chunk.css.map",
-    "static/js/2.e48d96d3.chunk.js.LICENSE.txt": "/react-chat/static/js/2.e48d96d3.chunk.js.LICENSE.txt",
-    "static/media/bear.png": "/react-chat/static/media/bear.133150d4.png"
+    "static/css/main.77e623ba.chunk.css.map": "/react-chat/static/css/main.77e623ba.chunk.css.map",
+    "static/js/2.69ee5a2a.chunk.js.LICENSE.txt": "/react-chat/static/js/2.69ee5a2a.chunk.js.LICENSE.txt",
+    "static/media/bear.png": "/react-chat/static/media/bear.133150d4.png",
+    "static/media/bunny.png": "/react-chat/static/media/bunny.a8811572.png",
+    "static/media/cat.png": "/react-chat/static/media/cat.40d61292.png",
+    "static/media/cheetah.png": "/react-chat/static/media/cheetah.94d75175.png",
+    "static/media/mouse.png": "/react-chat/static/media/mouse.90aa5b66.png",
+    "static/media/panda.png": "/react-chat/static/media/panda.95addbd5.png",
+    "static/media/pig.png": "/react-chat/static/media/pig.40f40de9.png",
+    "static/media/tiger.png": "/react-chat/static/media/tiger.bb8722e7.png"
   },
   "entrypoints": [
     "static/js/runtime-main.6fc5081d.js",
-    "static/js/2.e48d96d3.chunk.js",
-    "static/css/main.3efc9828.chunk.css",
-    "static/js/main.2611deb3.chunk.js"
+    "static/js/2.69ee5a2a.chunk.js",
+    "static/css/main.77e623ba.chunk.css",
+    "static/js/main.0958303b.chunk.js"
   ]
 }
