@@ -14,13 +14,18 @@ class Settings extends React.Component {
           {
             name: 'Profile Picture',
             description: 'Change your profile picture here.',
-            settingType: 'picture'
+            settingType: 'picture',
+            type: 'modal'
           },
           {
-            name: 'Display Name',
-            description: 'Change your display here.',
-            settingType: 'displayName'
+            name: 'Dark Mode',
+            type: 'toggle'
           }
+          // {
+          //   name: 'Display Name',
+          //   description: 'Change your display here.',
+          //   settingType: 'displayName'
+          // }
         ]
       }
     ],
@@ -76,12 +81,13 @@ class Settings extends React.Component {
   render() {
     let settings = [];
     for (let i = 0; i < this.state.sections.length; i++) {
-      settings.push(<SettingSection
-        key={this.state.sections[i].name}
-        title={this.state.sections[i].name + ' Settings'}
-        settings={[...this.state.sections[i].settings]}
-        click={this.toggleModal}
-      />);
+        settings.push(<SettingSection
+          key={this.state.sections[i].name}
+          title={this.state.sections[i].name + ' Settings'}
+          settings={[...this.state.sections[i].settings]}
+          click={this.toggleModal}
+          toggle={this.props.toggleDark}
+        />);
     }
 
     let modal = null;

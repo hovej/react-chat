@@ -1,6 +1,6 @@
 .Input {
   resize: none;
-  width: 100%;
+  width: 99%;
   height: 90%;
   font-size: 110%;
   margin: 0;
@@ -20,6 +20,11 @@
   font: inherit;
   box-sizing: border-box;
   border-top: 1px solid blueviolet;
+}
+
+.DarkButton {
+  background-color: black;
+  color: white;
 }
 
 .Button:hover {

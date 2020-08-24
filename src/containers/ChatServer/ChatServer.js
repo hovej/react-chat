@@ -122,6 +122,7 @@ class ChatServer extends React.Component {
       update={this.updateMessageHistory}
       value={this.state.messageText}
       accounts={this.state.allAccounts}
+      darkMode={this.props.darkMode}
     />
     if (!this.state.messages) {
       chat = null;
@@ -130,9 +131,9 @@ class ChatServer extends React.Component {
     return (
       <div className={classes.Server}>
         {modal}
-        <Feedback />
+        <Feedback darkMode={this.props.darkMode} />
         {chat}
-        <Members />
+        <Members darkMode={this.props.darkMode} />
       </div>
     );
   }

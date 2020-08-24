@@ -12,7 +12,8 @@ import News from './containers/News/News';
 class App extends React.Component {
   state = {
     authenticated: false,
-    account: ''
+    account: '',
+    darkMode: false
   }
 
   updateDisplayName = (account) => {
@@ -25,9 +26,16 @@ class App extends React.Component {
       console.log(account);
       this.setState({
         account: account,
-        authenticated: true
+        authenticated: true,
+        darkMode: account.darkMode
       });
     }
+  }
+
+  toggleDarkMode = () => {
+    this.setState(state => ({
+      darkMode: !state.darkMode
+    }))
   }
 
   render() {
@@ -38,14 +46,14 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <Layout>
+        <Layout darkMode={this.state.darkMode}>
           <Switch>
             <Route path='/login' render={() => <Login updateName={this.updateDisplayName} {...this.props} />} />
             <Route path='/create' component={CreateAccount} />
             {redirect}
-            <Route path='/home' render={() => <ChatServer account={this.state.account} />} />
-            <Route path='/settings' render={() => <Settings account={this.state.account} />} />
-            <Route path='/news' component={News} />
+            <Route path='/home' render={() => <ChatServer account={this.state.account} darkMode={this.state.darkMode} />} />
+            <Route path='/settings' render={() => <Settings account={this.state.account} toggleDark={this.toggleDarkMode} darkMode={this.state.darkMode} />} />
+            <Route path='/news' render={() => <News darkMode={this.state.darkMode} />} />
             <Redirect from='/' exact to='/login'></Redirect>
             <Route path='/' component={NotFound} />
           </Switch>

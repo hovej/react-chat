@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 
 import classes from './ChatHistory.module.css';
+
 import Message from '../../Message/Message';
 
 class ChatHistory extends PureComponent {

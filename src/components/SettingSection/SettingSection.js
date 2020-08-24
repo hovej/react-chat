@@ -6,13 +6,25 @@ import classes from './SettingSection.module.css';
 const SettingSection = props => {
   let settings = [];
   for (let i = 0; i < props.settings.length; i++) {
-    settings.push(<Setting
-      key={props.settings[i].name}
-      name={props.settings[i].name}
-      description={props.settings[i].description}
-      click={props.click}
-      settingType={props.settings[i].settingType}
-    />)
+    if (props.settings[i].type === 'modal') {
+      settings.push(<Setting
+        key={props.settings[i].name}
+        name={props.settings[i].name}
+        description={props.settings[i].description}
+        click={props.click}
+        type={props.settings[i].type}
+        settingType={props.settings[i].settingType}
+      />)
+    } else if (props.settings[i].type === 'toggle') {
+      settings.push(<Setting
+        key={props.settings[i].name}
+        name={props.settings[i].name}
+        description={props.settings[i].description}
+        click={props.toggle}
+        type={props.settings[i].type}
+        settingType={props.settings[i].settingType}
+      />)
+    }
   }
 
   return (
