@@ -16,7 +16,7 @@ class App extends React.Component {
     darkMode: false
   }
 
-  updateDisplayName = (account) => {
+  login = (account) => {
     if (this.state.authenticated) {
       this.setState({
         authenticated: false,
@@ -30,6 +30,11 @@ class App extends React.Component {
         darkMode: account.darkMode
       });
     }
+  }
+
+  updateAccount = (updatedAccount) => {
+    this.setState({ account: updatedAccount });
+    console.log('updated');
   }
 
   toggleDarkMode = () => {
@@ -48,11 +53,18 @@ class App extends React.Component {
       <BrowserRouter>
         <Layout darkMode={this.state.darkMode}>
           <Switch>
-            <Route path='/login' render={() => <Login updateName={this.updateDisplayName} {...this.props} />} />
+            <Route path='/login' render={() => <Login login={this.login} {...this.props} />} />
             <Route path='/create' component={CreateAccount} />
             {redirect}
             <Route path='/home' render={() => <ChatServer account={this.state.account} darkMode={this.state.darkMode} />} />
-            <Route path='/settings' render={() => <Settings account={this.state.account} toggleDark={this.toggleDarkMode} darkMode={this.state.darkMode} />} />
+            <Route path='/settings'
+              render={() => <Settings
+                account={this.state.account}
+                toggleDark={this.toggleDarkMode}
+                darkMode={this.state.darkMode}
+                update={this.updateAccount}
+              />}
+            />
             <Route path='/news' render={() => <News darkMode={this.state.darkMode} />} />
             <Redirect from='/' exact to='/login'></Redirect>
             <Route path='/' component={NotFound} />

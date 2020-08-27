@@ -1,7 +1,8 @@
 import React from 'react';
 
-import Button from '../../Button/Button';
+import Button from '../../UI/Button/Button';
 import PictureSetting from './PictureSetting/PictureSetting';
+import Input from '../../UI/Input/Input'
 
 class SettingsModalInfo extends React.Component {
   state = {
@@ -37,7 +38,23 @@ class SettingsModalInfo extends React.Component {
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', margin: 'auto' }}>
               {options}
             </div>
-            <Button type='setting' clicked={() => this.props.save('profilePicture')}>SAVE</Button>
+            <Button type='setting' clicked={this.props.save}>SAVE</Button>
+          </div>
+        )
+      case 'displayName':
+        return (
+          <div style={{margin: 'auto', textAlign: 'center'}}>
+            <h3>Please enter your new display name.</h3>
+            <Input elementType='input' type='text' value={this.props.displayName} changed={this.props.change} />
+            <Button type='setting' clicked={this.props.save}>SAVE</Button>
+          </div>
+        )
+      case 'password':
+        return (
+          <div style={{margin: 'auto', textAlign: 'center'}}>
+            <h3>Please enter your new password.</h3>
+            <Input elementType='input' type='text' value={this.props.password} changed={this.props.change} />
+            <Button type='setting' clicked={this.props.save}>SAVE</Button>
           </div>
         )
       default:

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import bear from '../../../../../assets/profilePictures/bear.png';
-import bunny from '../../../../../assets/profilePictures/bunny.png';
-import cat from '../../../../../assets/profilePictures/cat.png';
-import cheetah from '../../../../../assets/profilePictures/cheetah.png';
-import mouse from '../../../../../assets/profilePictures/mouse.png';
-import pig from '../../../../../assets/profilePictures/pig.png';
-import tiger from '../../../../../assets/profilePictures/tiger.png';
-import panda from '../../../../../assets/profilePictures/panda.png';
+import bear from '../../../../assets/profilePictures/bear.png';
+import bunny from '../../../../assets/profilePictures/bunny.png';
+import cat from '../../../../assets/profilePictures/cat.png';
+import cheetah from '../../../../assets/profilePictures/cheetah.png';
+import mouse from '../../../../assets/profilePictures/mouse.png';
+import pig from '../../../../assets/profilePictures/pig.png';
+import tiger from '../../../../assets/profilePictures/tiger.png';
+import panda from '../../../../assets/profilePictures/panda.png';
 
 import classes from './PictureSetting.module.css';
 
@@ -16,6 +16,8 @@ const PictureSetting = props => {
   if (props.current) {
     classNames.push(classes.Current);
   }
+  console.log(classNames);
+  console.log(props.type);
   switch (props.type) {
     case 'bear':
       return <img

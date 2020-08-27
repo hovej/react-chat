@@ -3,7 +3,7 @@ import axios from '../../axios-messages';
 
 import SettingSection from '../../components/SettingSection/SettingSection';
 import Modal from '../../components/UI/Modal/Modal';
-import SettingsModalInfo from '../../components/UI/Modal/SettingsModalInfo/SettingsModalInfo';
+import SettingsModalInfo from '../../components/SettingSection/SettingsModalInfo/SettingsModalInfo';
 
 class Settings extends React.Component {
   state = {
@@ -18,37 +18,54 @@ class Settings extends React.Component {
             type: 'modal'
           },
           {
+            name: 'Display Name',
+            settingType: 'displayName',
+            type: 'modal'
+          },
+          {
+            name: 'Password',
+            settingType: 'password',
+            type: 'modal'
+          },
+          {
             name: 'Dark Mode',
             type: 'toggle'
           }
-          // {
-          //   name: 'Display Name',
-          //   description: 'Change your display here.',
-          //   settingType: 'displayName'
-          // }
         ]
       }
     ],
     showModal: false,
     currentSetting: '',
-    selectedImage: this.props.account.profilePicture
+    selectedImage: this.props.account.profilePicture,
+    displayName: this.props.account.displayName,
+    password: this.props.account.password
   }
 
   componentDidMount() {
     console.log(this.props.account);
   }
 
+  handleTextChange(e, setting) {
+    let updatedState = { ...this.state };
+    updatedState[setting] = e.target.value;
+    this.setState({...updatedState})
+    e.preventDefault();
+  }
+
   selectImage = (image) => {
     this.setState({ selectedImage: image });
   }
 
-  saveSetting = (setting) => {
+  saveSetting = () => {
     axios.get('/accounts.json')
       .then(response => {
         for (let account in response.data) {
           if (response.data[account].username === this.props.account.username) {
             let updatedAccount = { ...response.data[account] };
-            updatedAccount[setting] = this.state.selectedImage;
+            updatedAccount.profilePicture = this.state.selectedImage;
+            updatedAccount.displayName = this.state.displayName;
+            updatedAccount.password = this.state.password;
+            this.props.update(updatedAccount);
             console.log(updatedAccount);
             axios.delete(`accounts/${account}.json`)
               .then(response => {
@@ -81,25 +98,42 @@ class Settings extends React.Component {
   render() {
     let settings = [];
     for (let i = 0; i < this.state.sections.length; i++) {
-        settings.push(<SettingSection
-          key={this.state.sections[i].name}
-          title={this.state.sections[i].name + ' Settings'}
-          settings={[...this.state.sections[i].settings]}
-          click={this.toggleModal}
-          toggle={this.props.toggleDark}
-        />);
+      settings.push(<SettingSection
+        key={this.state.sections[i].name}
+        title={this.state.sections[i].name + ' Settings'}
+        settings={[...this.state.sections[i].settings]}
+        click={this.toggleModal}
+        toggle={this.props.toggleDark}
+      />);
     }
 
     let modal = null;
+    let modalProps = {
+      save: this.saveSetting,
+      type: this.state.currentSetting
+    };
+    switch (this.state.currentSetting) {
+      case 'picture':
+        modalProps.select = this.selectImage;
+        modalProps.current = this.state.selectedImage;
+        break;
+      case 'displayName':
+        modalProps.displayName = this.state.displayName;
+        modalProps.change = (e) => this.handleTextChange(e, 'displayName');
+        break;
+      case 'password':
+        modalProps.password = this.state.password;
+        modalProps.change = (e) => this.handleTextChange(e, 'password');
+        break;
+      default:
+        break;
+    }
     if (this.state.showModal) {
-      modal = <Modal click={this.toggleModal}>
-        <SettingsModalInfo
-          select={this.selectImage}
-          current={this.state.selectedImage}
-          save={this.saveSetting}
-          type={this.state.currentSetting}
-        />
-      </Modal>;
+          modal = <Modal click={this.toggleModal}>
+            <SettingsModalInfo
+              {...modalProps}
+            />
+          </Modal>;
     }
 
     return (

@@ -13,7 +13,7 @@ class ChatServer extends React.Component {
     user: 'anon123',
     name: 'Anonymous',
     messageText: '',
-    currentVersion: '8232020',
+    currentVersion: '8302020',
     newVersion: false,
     allAccounts: {}
   }
@@ -83,7 +83,7 @@ class ChatServer extends React.Component {
     const message = {
       text: this.state.messageText,
       user: this.state.user,
-      name: this.state.name
+      name: this.props.account.displayName
     }
     if (message.text.trim().length > 0) {
       if (this.state.messages.hasOwnProperty('initial')) {
