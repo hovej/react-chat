@@ -15,7 +15,56 @@ class SettingsModalInfo extends React.Component {
       'panda',
       'pig',
       'tiger'
-    ]
+    ],
+    password: {
+      isValid: false,
+      validation: {
+        minLength: 6,
+        maxLength: 20
+      },
+      attempted: false,
+      tooltip: 'Password must be between 6-20 characters.'
+    },
+    displayName: {
+      isValid: false,
+      validation: {
+        minLength: 1,
+        maxLength: 20
+      },
+      attempted: false,
+      tooltip: 'Display name must be between 1-20 characters.'
+    }
+  }
+
+  checkValidation = (input, rules) => {
+    let isValid = true;
+    if (rules.minLength) {
+      isValid = input.length >= rules.minLength && isValid
+    }
+    if (rules.maxLength) {
+      isValid = input.length <= rules.maxLength && isValid
+    }
+    return isValid;
+  }
+
+  newPasswordSave = () => {
+    if (this.checkValidation(this.props.password, this.state.password.validation)) {
+      this.props.save();
+    } else {
+      const inputInfo = {...this.state.password};
+      inputInfo.attempted = true;
+      this.setState({password: {...inputInfo}});
+    }
+  }
+
+  newDisplayNameSave = () => {
+    if (this.checkValidation(this.props.displayName, this.state.displayName.validation)) {
+      this.props.save();
+    } else {
+      const inputInfo = {...this.state.displayName};
+      inputInfo.attempted = true;
+      this.setState({displayName: {...inputInfo}});
+    }
   }
 
   render() {
@@ -33,7 +82,7 @@ class SettingsModalInfo extends React.Component {
           )
         }
         return (
-          <div style={{margin: 'auto', textAlign: 'center'}}>
+          <div style={{ margin: 'auto', textAlign: 'center' }}>
             <h3 style={{ width: '100%' }}>Please select a new profile picture.</h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', margin: 'auto' }}>
               {options}
@@ -42,19 +91,31 @@ class SettingsModalInfo extends React.Component {
           </div>
         )
       case 'displayName':
+        let displayTooltip = null;
+        if (this.state.displayName.attempted) {
+          displayTooltip = <p style={{color: 'red'}}>{this.state.displayName.tooltip}</p>
+        }
         return (
-          <div style={{margin: 'auto', textAlign: 'center'}}>
+          <div style={{ margin: 'auto', textAlign: 'center' }}>
             <h3>Please enter your new display name.</h3>
             <Input elementType='input' type='text' value={this.props.displayName} changed={this.props.change} />
-            <Button type='setting' clicked={this.props.save}>SAVE</Button>
+            {displayTooltip}
+            <Button type='setting' clicked={this.newDisplayNameSave}>SAVE</Button>
           </div>
         )
       case 'password':
+        let passTooltip = null;
+        if (this.state.password.attempted) {
+          passTooltip = <p style={{color: 'red'}}>{this.state.password.tooltip}</p>
+        }
         return (
-          <div style={{margin: 'auto', textAlign: 'center'}}>
-            <h3>Please enter your new password.</h3>
+          <div style={{ margin: 'auto', textAlign: 'center' }}>
+            <h3>Change Your Password</h3>
+            <label>Please enter your new password.
             <Input elementType='input' type='text' value={this.props.password} changed={this.props.change} />
-            <Button type='setting' clicked={this.props.save}>SAVE</Button>
+            </label>
+            {passTooltip}
+            <Button type='setting' clicked={this.newPasswordSave}>SAVE</Button>
           </div>
         )
       default:

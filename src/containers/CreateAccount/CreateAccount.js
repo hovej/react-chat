@@ -114,7 +114,6 @@ class CreateAccount extends React.Component {
   }
 
   createNewAccount = (e) => {
-    console.log('1');
     e.preventDefault();
     const account = {
       username: this.state.createAccountForm.username.value,
@@ -181,6 +180,7 @@ class CreateAccount extends React.Component {
         <p>Create an Account</p>
         <form onSubmit={this.createNewAccount} className={classes.Create}>
           {newInputElements}
+          <p style={{color: 'red'}}>Note: The creator of this site will have access to user information. The creator will not take advantage of this. This site is used purely for educational purposes.</p>
           <Button disabled={!this.state.validInfo}>CREATE</Button>
         </form>
         <p>Already have an account? Sign in <Link to='/login'>here</Link>.</p>
