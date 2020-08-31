@@ -10,6 +10,7 @@
   height: 25px;
   border: 1px solid black;
   box-sizing: border-box;
+  border-radius: 5px;
   outline: none;
 }
 

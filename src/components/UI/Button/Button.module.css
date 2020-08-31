@@ -9,6 +9,7 @@
   font-size: 120%;
   font-weight: bold;
   color: blueviolet;
+  border-radius: 5px;
   outline: none;
 }
 
@@ -27,4 +28,5 @@
   cursor: pointer;
   font-weight: bold;
   outline: none;
+  border-radius: 5px;
 }

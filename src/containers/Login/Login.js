@@ -5,6 +5,7 @@ import axios from '../../axios-messages';
 import classes from './Login.module.css';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Login extends React.Component {
   state = {
@@ -22,7 +23,8 @@ class Login extends React.Component {
         value: ''
       }
     },
-    validForm: true
+    validForm: true,
+    loading: false
   }
 
   componentDidMount() {
@@ -40,6 +42,7 @@ class Login extends React.Component {
 
   onSubmitHandler = (e) => {
     e.preventDefault();
+    this.setState({ loading: true })
     const users = [];
     let validInfo = false;
     axios.request('/accounts.json')
@@ -52,13 +55,14 @@ class Login extends React.Component {
         for (let i = 0; i < users.length; i++) {
           if (users[i].username === this.state.loginForm.username.value && users[i].password === this.state.loginForm.password.value) {
             validInfo = true;
-            this.props.login({...users[i]});
+            this.props.login({ ...users[i] });
             this.props.history.push('/home');
           }
         }
         if (!validInfo) {
           this.setState({
-            validForm: false
+            validForm: false,
+            loading: false
           });
         }
       })
@@ -95,15 +99,22 @@ class Login extends React.Component {
     }
     )
 
+    let form = (
+      <form onSubmit={this.onSubmitHandler} className={classes.Container}>
+        {invalidMessage}
+        {allInputs}
+        <Button>LOGIN</Button>
+      </form>
+    );
+    if (this.state.loading) {
+      form = <Spinner />
+    }
+
     return (
       <div className={classes.Page}>
         <h1>Welcome to React Chat!</h1>
         <p>Please login below.</p>
-        <form onSubmit={this.onSubmitHandler} className={classes.Container}>
-          {invalidMessage}
-          {allInputs}
-          <Button>LOGIN</Button>
-        </form>
+        {form}
         <p>Don't have an account yet? Sign up <Link to='/create'>here</Link>.</p>
       </div>
     )

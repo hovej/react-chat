@@ -1,7 +1,8 @@
 .History {
   width: 100%;
-  height: 93%;
+  height: 91%;
   padding: 5px;
+  margin-bottom: 5px;
   box-sizing: border-box;
   display: flex;
   flex-flow: column-reverse;

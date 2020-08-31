@@ -2,18 +2,24 @@
   width: 100%;
   height: 7%;
   display: flex;
+  box-sizing: border-box;
 }
 
 .Input {
-  width: 80%;
+  width: 79%;
+  margin: auto;
   height: 100%;
   box-sizing: border-box;
+  border-color: blueviolet;
+  border-radius: 5px;
 }
 
 .Button {
-  width: 20%;
+  width: 19%;
+  margin: auto;
   height: 100%;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .DarkButton {

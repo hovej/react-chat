@@ -41,10 +41,6 @@ class Settings extends React.Component {
     password: this.props.account.password
   }
 
-  componentDidMount() {
-    console.log(this.props.account);
-  }
-
   handleTextChange(e, setting) {
     let updatedState = { ...this.state };
     updatedState[setting] = e.target.value;
@@ -71,7 +67,7 @@ class Settings extends React.Component {
               .then(response => {
                 axios.post('/accounts.json', updatedAccount)
                   .then(response => {
-                    this.toggleModal('');
+                    
                   })
                   .catch(err => {
                     console.log(err);

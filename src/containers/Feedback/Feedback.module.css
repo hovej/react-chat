@@ -1,7 +1,7 @@
 .Input {
   resize: none;
   width: 99%;
-  height: 90%;
+  height: 89%;
   font-size: 110%;
   margin: 0;
   border: none;
@@ -11,15 +11,16 @@
   width: 25%;
   height: 75vh;
   margin: 0;
+  text-align: center;
 }
 
 .Button {
-  width: 100%;
+  width: 98%;
   height: 9%;
-  margin-top: -5px;
   font: inherit;
   box-sizing: border-box;
-  border-top: 1px solid blueviolet;
+  border: 1px solid blueviolet;
+  border-radius: 5px;
 }
 
 .DarkButton {

@@ -5,6 +5,13 @@ class News extends React.Component {
   state = {
     items: [
       {
+        date: '8/30',
+        updates: [
+          'Your password and display name can now be changed in your settings.',
+          'Several UI improvements have been made to increase viewing quality.'
+        ]
+      },
+      {
         date: '8/23',
         updates: [
           'Profile pictures can now be changed! You have 8 different pictures to choose from at the moment.',

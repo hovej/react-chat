@@ -8,6 +8,7 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
 import CreateSuccess from './CreateSuccess/CreateSuccess';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class CreateAccount extends React.Component {
   state = {
@@ -57,7 +58,8 @@ class CreateAccount extends React.Component {
     },
     validInfo: false,
     usernames: [],
-    submitted: false
+    submitted: false,
+    loading: false
   }
 
   componentDidMount() {
@@ -115,6 +117,7 @@ class CreateAccount extends React.Component {
 
   createNewAccount = (e) => {
     e.preventDefault();
+    this.setState({ loading: true })
     const account = {
       username: this.state.createAccountForm.username.value,
       displayName: this.state.createAccountForm.displayName.value,
@@ -130,7 +133,10 @@ class CreateAccount extends React.Component {
         username.value = 'This username is taken.';
         username.valid = false;
         form.username = username;
-        this.setState({ createAccountForm: form });
+        this.setState({
+           createAccountForm: form,
+           loading: false
+          });
       }
     }
     console.log(shouldPost);
@@ -138,7 +144,10 @@ class CreateAccount extends React.Component {
       axios.post('/accounts.json', account)
         .then(res => {
           console.log(res);
-          this.setState({ submitted: true });
+          this.setState({
+            submitted: true,
+            loading: false
+          });
         })
         .catch(error => {
           console.log(error)
@@ -173,16 +182,23 @@ class CreateAccount extends React.Component {
     if (this.state.submitted) {
       showModal = <Modal type='create account' {...this.props}><CreateSuccess /></Modal>
     }
+    let form = (
+      <form onSubmit={this.createNewAccount} className={classes.Create}>
+        {newInputElements}
+        <p style={{ color: 'red' }}>Note: The creator of this site will have access to user information. The creator will not take advantage of this. This site is used purely for educational purposes.</p>
+        <Button disabled={!this.state.validInfo}>CREATE</Button>
+      </form>
+    )
+    if (this.state.loading) {
+      form = <Spinner />
+    }
+
     return (
       <div className={classes.Page}>
         {showModal}
         <h1>Welcome to React Chat!</h1>
         <p>Create an Account</p>
-        <form onSubmit={this.createNewAccount} className={classes.Create}>
-          {newInputElements}
-          <p style={{color: 'red'}}>Note: The creator of this site will have access to user information. The creator will not take advantage of this. This site is used purely for educational purposes.</p>
-          <Button disabled={!this.state.validInfo}>CREATE</Button>
-        </form>
+        {form}
         <p>Already have an account? Sign in <Link to='/login'>here</Link>.</p>
       </div>
     )

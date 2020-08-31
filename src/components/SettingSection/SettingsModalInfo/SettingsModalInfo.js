@@ -2,7 +2,8 @@ import React from 'react';
 
 import Button from '../../UI/Button/Button';
 import PictureSetting from './PictureSetting/PictureSetting';
-import Input from '../../UI/Input/Input'
+import Input from '../../UI/Input/Input';
+import SettingSuccess from '../Setting/SettingSuccess/SettingSuccess';
 
 class SettingsModalInfo extends React.Component {
   state = {
@@ -33,7 +34,8 @@ class SettingsModalInfo extends React.Component {
       },
       attempted: false,
       tooltip: 'Display name must be between 1-20 characters.'
-    }
+    },
+    success: false
   }
 
   checkValidation = (input, rules) => {
@@ -49,6 +51,7 @@ class SettingsModalInfo extends React.Component {
 
   newPasswordSave = () => {
     if (this.checkValidation(this.props.password, this.state.password.validation)) {
+      this.setState({success: true})
       this.props.save();
     } else {
       const inputInfo = {...this.state.password};
@@ -59,6 +62,7 @@ class SettingsModalInfo extends React.Component {
 
   newDisplayNameSave = () => {
     if (this.checkValidation(this.props.displayName, this.state.displayName.validation)) {
+      this.setState({success: true})
       this.props.save();
     } else {
       const inputInfo = {...this.state.displayName};
@@ -68,6 +72,9 @@ class SettingsModalInfo extends React.Component {
   }
 
   render() {
+    if (this.state.success) {
+      return <SettingSuccess setting={this.props.type} />
+    }
     switch (this.props.type) {
       case 'picture':
         let options = [];
